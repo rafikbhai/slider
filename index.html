@@ -1,0 +1,75 @@
+<style>
+    body{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+        height: 100vh;
+    }
+  
+    .slider{
+        display: flex;
+        overflow-x: scroll;
+    }
+    .slider-container{
+        position:relative;
+        overflow:hidden;
+        margin:50px auto;
+        width:1000px;
+        height: 500px;
+        border:3px solid black;
+    }
+    .slider-controls{
+        left:50%;
+        position:absolute;
+        bottom:20px;
+        transform: translateX(-50%);
+        
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide active" draggable="false"><img src="https://picsum.photos/id/237/1000/500" alt=""></div>
+            <div class="slide" draggable="false"><img src="https://picsum.photos/id/238/1000/500" alt=""></div>
+            <div class="slide"><img src="https://picsum.photos/id/239/1000/500" alt=""></div>
+        </div>
+        <div class="slider-controls">
+            <button class="prev-slide">Prev</button>
+            <button class="next-slide">Next</button>
+        </div>
+    </div>
+    <script>
+      const slider=document.querySelector(".slider");
+      const slides=document.querySelectorAll(".slide");
+      const prevBtn=document.querySelector(".prev-slide");
+      const nextBtn=document.querySelector(".next-slide");
+
+      let slideIndex=0;
+
+      slides[slideIndex].classList.add("active");
+
+      prevBtn.addEventListener("click", prevSlide);
+      nextBtn.addEventListener("click", nextSlide);
+
+      function prevSlide(){
+
+      }
+
+      function nextSlide(){
+        slides[slideIndex].classList.remove("active");
+
+        slideIndex=(slideIndex===slides.length-1)? 0 : slideIndex+1;
+        slides[slideIndex].classList.add("active");
+        slider.style.transform=`translateX(-${slideIndex*100}%)`;
+    }
+    
+    </script>
+</body>
+</html>
